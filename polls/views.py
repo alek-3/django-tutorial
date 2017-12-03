@@ -20,6 +20,10 @@ class DetailView(generic.DetailView):
     model = Question
     template_name = 'polls/detail.html'
 
+    def get_queryset(self):
+        """上記関数はデフォルトで備わっている。"""
+        return Question.objects.filter(pub_date__lte=timezone.now())
+
 
 class ResultView(generic.DetailView):
     model = Question
